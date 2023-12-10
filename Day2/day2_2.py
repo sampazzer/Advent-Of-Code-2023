@@ -1,3 +1,5 @@
+import math
+
 """
 Information:
 12 red
@@ -5,9 +7,11 @@ Information:
 14 blue
 """
 """
-index 0 = which game
-index 1 = string with all the grabs
-index 3 = list with per grab (grab 1 is index 0 within this list)
+fmtdList index:
+index 0 = which game (the enumeration)
+index 1 = string with the bog standard info. Not including "Game x:"
+index 2 = list with per grab (grab 1 is index 0 within this list)
+index 3 = list of numbers and colours independent of which grab it was
 """
 # final list = list for getting the numbers of games that didnt have over the amount.
 # fmtdList is the main list keeping track of the split up data
@@ -55,17 +59,28 @@ for i, s in enlist:
 
 # finding out if any of the grabs for each game is above the allowed amount. If
 # it is, dont add it to the final list. If it isnt add it to the final list.
+print(fmtdList[0][3])
 for amount in range(len(fmtdList)):
-    removefromlist = False
+    # numbersTogether list putting all blue numbers together then red ect.
+    # 0 = blue, 1 = red, 3 = green
+    numbersTogether = [[], [], []]
     for items, things in fmtdList[amount][3]:
-        if things == "blue" and int(items) > 14:
-            removefromlist = True
-        elif things == "red" and int(items) > 12:
-            removefromlist = True
-        elif things == "green" and int(items) > 13:
-            removefromlist = True
-    if not removefromlist:
-        finalList.append(amount + 1)
+        if things == "blue":
+            numbersTogether[0].append(int(items))
+        elif things == "red":
+            numbersTogether[1].append(int(items))
+        elif things == "green":
+            numbersTogether[2].append(int(items))
+    print(numbersTogether)
+    # sorting the numbers so highest is first
+    for i in range(len(numbersTogether)):
+        numbersTogether[i].sort(reverse=True)
+        numbersTogether[i] = numbersTogether[i][0]
+
+    # add to finalList the numbers multiplied together
+    finalList.append(math.prod(numbersTogether))
+    print(numbersTogether)
+    print(math.prod(numbersTogether))
 
 # print the final list and add the values together
 print(finalList)

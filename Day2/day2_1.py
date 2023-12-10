@@ -5,9 +5,11 @@ Information:
 14 blue
 """
 """
-index 0 = which game
-index 1 = string with all the grabs
-index 3 = list with per grab (grab 1 is index 0 within this list)
+fmtdList index:
+index 0 = which game (the enumeration)
+index 1 = string with the bog standard info. Not including "Game x:"
+index 2 = list with per grab (grab 1 is index 0 within this list)
+index 3 = list of numbers and colours independent of which grab it was
 """
 # final list = list for getting the numbers of games that didnt have over the amount.
 # fmtdList is the main list keeping track of the split up data
