@@ -224,3 +224,5 @@ print(special_char_number_list)
 int_special_char_number_list = [int(i) for i in special_char_number_list]
 print(int_special_char_number_list)
 print(sum(int_special_char_number_list))
+
+# Result was: 514969
