@@ -1,7 +1,8 @@
 import time
+import math
 
 # the input file string
-input = "test_input"
+input = "input3_1"
 
 """ I wrote this to find the special characters in the input so I didnt have
 to use all special characters and check for ones I didnt need to.
@@ -215,118 +216,281 @@ for n in all_numbers_list:
         # ***It looks so much cleaner.
         # If number starting on first position search up to right, right, down to right
         if n[1] == 0:
-            uppper_line_chars = lines[n[0] - 1][n[1] : n[2] + 2]
-            for i, c in enumerate(uppper_line_chars, n[1]):
+            upper_line_chars = lines[n[0] - 1][n[1] : n[2] + 2]
+            for i, c in enumerate(upper_line_chars, n[1]):
+                append_number_to_index = False
                 if c in special_character_from_input:
-                    temp_dict_list.append(
-                        {"index": str(n[0] - 1) + "/" + str(i), "number": n[3]}
-                    )
+                    for items in dict_index_list:
+                        # If we find the index already in the list then add the number to that index
+                        if items["index"] == str(n[0] - 1) + "/" + str(i):
+                            items["number"].append(n[3])
+                            append_number_to_index = True
+                    # If we dont find the index already in the list then add the index with the number
+                    if not append_number_to_index:
+                        my_index = str(n[0] - 1) + "/" + str(i)
+                        dict_index_list.append({"index": my_index, "number": [n[3]]})
 
             same_line_chars = lines[n[0]][n[2] + 1]
             for i, c in enumerate(same_line_chars, n[2] + 1):
+                append_number_to_index = False
                 if c in special_character_from_input:
-                    temp_dict_list.append(
-                        {"index": str(n[0]) + "/" + str(i), "number": n[3]}
-                    )
+                    for items in dict_index_list:
+                        # If we find the index already in the list then add the number to that index
+                        if items["index"] == str(n[0]) + "/" + str(i):
+                            items["number"].append(n[3])
+                            append_number_to_index = True
+                    # If we dont find the index already in the list then add the index with the number
+                    if not append_number_to_index:
+                        my_index = str(n[0]) + "/" + str(i)
+                        dict_index_list.append({"index": my_index, "number": [n[3]]})
 
             lower_line_chars = lines[n[0] + 1][n[1] : n[2] + 2]
             for i, c in enumerate(lower_line_chars, n[1]):
+                append_number_to_index = False
                 if c in special_character_from_input:
-                    temp_dict_list.append(
-                        {"index": str(n[0] + 1) + "/" + str(i), "number": n[3]}
-                    )
+                    for items in dict_index_list:
+                        # If we find the index already in the list then add the number to that index
+                        if items["index"] == str(n[0] + 1) + "/" + str(i):
+                            items["number"].append(n[3])
+                            append_number_to_index = True
+                    # If we dont find the index already in the list then add the index with the number
+                    if not append_number_to_index:
+                        my_index = str(n[0] + 1) + "/" + str(i)
+                        dict_index_list.append({"index": my_index, "number": [n[3]]})
 
         # If number ending on last position search up to left, left, down to left
         if n[2] == len(lines[n[0]]) - 1:
             print("middle number ending last index")
-            uppper_line_chars = lines[n[0] - 1][n[1] - 1 : n[2] + 1]
-            for i, c in enumerate(uppper_line_chars, n[1] - 1):
+            upper_line_chars = lines[n[0] - 1][n[1] - 1 : n[2] + 1]
+            for i, c in enumerate(upper_line_chars, n[1] - 1):
+                append_number_to_index = False
                 if c in special_character_from_input:
-                    temp_dict_list.append(
-                        {"index": str(n[0] - 1) + "/" + str(i), "number": n[3]}
-                    )
+                    for items in dict_index_list:
+                        # If we find the index already in the list then add the number to that index
+                        if items["index"] == str(n[0] - 1) + "/" + str(i):
+                            items["number"].append(n[3])
+                            append_number_to_index = True
+                    # If we dont find the index already in the list then add the index with the number
+                    if not append_number_to_index:
+                        my_index = str(n[0] - 1) + "/" + str(i)
+                        dict_index_list.append({"index": my_index, "number": [n[3]]})
 
             same_line_chars = lines[n[0]][n[1] - 1]
             for i, c in enumerate(same_line_chars, n[1] - 1):
+                append_number_to_index = False
                 if c in special_character_from_input:
-                    temp_dict_list.append(
-                        {"index": str(n[0]) + "/" + str(i), "number": n[3]}
-                    )
+                    for items in dict_index_list:
+                        # If we find the index already in the list then add the number to that index
+                        if items["index"] == str(n[0]) + "/" + str(i):
+                            items["number"].append(n[3])
+                            append_number_to_index = True
+                    # If we dont find the index already in the list then add the index with the number
+                    if not append_number_to_index:
+                        my_index = str(n[0]) + "/" + str(i)
+                        dict_index_list.append({"index": my_index, "number": [n[3]]})
 
             lower_line_chars = lines[n[0] + 1][n[1] - 1 : n[2] + 1]
             for i, c in enumerate(lower_line_chars, n[1] - 1):
+                append_number_to_index = False
                 if c in special_character_from_input:
-                    temp_dict_list.append(
-                        {"index": str(n[0] + 1) + "/" + str(i), "number": n[3]}
-                    )
+                    for items in dict_index_list:
+                        # If we find the index already in the list then add the number to that index
+                        if items["index"] == str(n[0] + 1) + "/" + str(i):
+                            items["number"].append(n[3])
+                            append_number_to_index = True
+                    # If we dont find the index already in the list then add the index with the number
+                    if not append_number_to_index:
+                        my_index = str(n[0] + 1) + "/" + str(i)
+                        dict_index_list.append({"index": my_index, "number": [n[3]]})
 
         # If number is not starting/ending in first/last positions
+        # Upper characters
         if n[1] is not 0 and n[2] is not len(lines[n[0]]) - 1:
-            print("I am in the middle of the middle")
-            uppper_line_chars = lines[n[0] - 1][n[1] - 1 : n[2] + 2]
-            for i, c in enumerate(uppper_line_chars, n[1] - 1):
+            upper_line_chars = lines[n[0] - 1][n[1] - 1 : n[2] + 2]
+            for i, c in enumerate(upper_line_chars, n[1] - 1):
+                append_number_to_index = False
                 if c in special_character_from_input:
-                    temp_dict_list.append(
-                        {"index": str(n[0] - 1) + "/" + str(i), "number": n[3]}
-                    )
+                    for items in dict_index_list:
+                        # If we find the index already in the list then add the number to that index
+                        if items["index"] == str(n[0] - 1) + "/" + str(i):
+                            items["number"].append(n[3])
+                            append_number_to_index = True
+                    # If we dont find the index already in the list then add the index with the number
+                    if not append_number_to_index:
+                        my_index = str(n[0] - 1) + "/" + str(i)
+                        dict_index_list.append({"index": my_index, "number": [n[3]]})
 
+            # Same line characters
             same_line_chars = lines[n[0]][n[1] - 1] + lines[n[0]][n[2] + 1]
+            for i, c in enumerate(same_line_chars):
+                # If its a special character and its the first iteration then it has to be to the left
+                if c in special_character_from_input and i == 0:
+                    append_number_to_index = False
+                    # Check for index already in list
+                    for items in dict_index_list:
+                        # If we find the index already in the list then add the number to that index
+                        if items["index"] == str(n[0]) + "/" + str(n[1] - 1):
+                            items["number"].append(n[3])
+                            append_number_to_index = True
+                    # If we dont find the index already in the list then add the index with the number
+                    if not append_number_to_index:
+                        my_index = str(n[0]) + "/" + str(n[1] - 1)
+                        dict_index_list.append({"index": my_index, "number": [n[3]]})
+                # If its a special character and its the second iteration then it has to be to the left
+                if c in special_character_from_input and i == 1:
+                    append_number_to_index = False
+                    # Check for index already in list
+                    for items in dict_index_list:
+                        # If we find the index already in the list then add the number to that index
+                        if items["index"] == str(n[0]) + "/" + str(n[2] + 1):
+                            items["number"].append(n[3])
+                            append_number_to_index = True
+                    # If we dont find the index already in the list then add the index with the number
+                    if not append_number_to_index:
+                        my_index = str(n[0]) + "/" + str(n[2] + 1)
+                        dict_index_list.append({"index": my_index, "number": [n[3]]})
+
+            # Lower characters
             lower_line_chars = lines[n[0] + 1][n[1] - 1 : n[2] + 2]
-            all_lines_together = uppper_line_chars + same_line_chars + lower_line_chars
-            print(all_lines_together)
-            for c in all_lines_together:
+            for i, c in enumerate(lower_line_chars, n[1] - 1):
+                append_number_to_index = False
                 if c in special_character_from_input:
-                    print("special char on middle rows first index")
-                    special_char_number_list.append(n[3])
-                    break
+                    for items in dict_index_list:
+                        # If we find the index already in the list then add the number to that index
+                        if items["index"] == str(n[0] + 1) + "/" + str(i):
+                            items["number"].append(n[3])
+                            append_number_to_index = True
+                    # If we dont find the index already in the list then add the index with the number
+                    if not append_number_to_index:
+                        my_index = str(n[0] + 1) + "/" + str(i)
+                        dict_index_list.append({"index": my_index, "number": [n[3]]})
 
     # ***NUMBERS ON THE LAST LINE***
     if n[0] == len(lines) - 1:
         print("numbers on last line")
         # If number starts at position 0 search up right and right
         if n[1] == 0:
-            uppper_line_chars = lines[n[0] - 1][n[1] : n[2] + 2]
-            same_line_chars = lines[n[0]][n[2] + 1]
-            all_lines_together = uppper_line_chars + same_line_chars
-            print(all_lines_together)
-            for c in all_lines_together:
+            upper_line_chars = lines[n[0] - 1][n[1] : n[2] + 2]
+            for i, c in enumerate(upper_line_chars, n[1]):
+                append_number_to_index = False
                 if c in special_character_from_input:
-                    print("special char on last rows first index")
-                    special_char_number_list.append(n[3])
-                    break
+                    for items in dict_index_list:
+                        # If we find the index already in the list then add the number to that index
+                        if items["index"] == str(n[0] - 1) + "/" + str(i):
+                            items["number"].append(n[3])
+                            append_number_to_index = True
+                    # If we dont find the index already in the list then add the index with the number
+                    if not append_number_to_index:
+                        my_index = str(n[0] - 1) + "/" + str(i)
+                        dict_index_list.append({"index": my_index, "number": [n[3]]})
+            same_line_chars = lines[n[0]][n[2] + 1]
+            for i, c in enumerate(same_line_chars, n[2] + 1):
+                append_number_to_index = False
+                if c in special_character_from_input:
+                    for items in dict_index_list:
+                        # If we find the index already in the list then add the number to that index
+                        if items["index"] == str(n[0]) + "/" + str(i):
+                            items["number"].append(n[3])
+                            append_number_to_index = True
+                    # If we dont find the index already in the list then add the index with the number
+                    if not append_number_to_index:
+                        my_index = str(n[0]) + "/" + str(i)
+                        dict_index_list.append({"index": my_index, "number": [n[3]]})
+
         # If number ending on last position search up to left and left
         if n[2] == len(lines[n[0]]) - 1:
-            uppper_line_chars = lines[n[0] - 1][n[1] - 1 : n[2] + 1]
-            same_line_chars = lines[n[0]][n[1] - 1]
-            all_lines_together = uppper_line_chars + same_line_chars
-            print(all_lines_together)
-            for c in all_lines_together:
+            upper_line_chars = lines[n[0] - 1][n[1] - 1 : n[2] + 1]
+            for i, c in enumerate(upper_line_chars, n[1] - 1):
+                append_number_to_index = False
                 if c in special_character_from_input:
-                    print("special char on last rows last index")
-                    special_char_number_list.append(n[3])
-                    break
+                    for items in dict_index_list:
+                        # If we find the index already in the list then add the number to that index
+                        if items["index"] == str(n[0] - 1) + "/" + str(i):
+                            items["number"].append(n[3])
+                            append_number_to_index = True
+                    # If we dont find the index already in the list then add the index with the number
+                    if not append_number_to_index:
+                        my_index = str(n[0] - 1) + "/" + str(i)
+                        dict_index_list.append({"index": my_index, "number": [n[3]]})
+            same_line_chars = lines[n[0]][n[1] - 1]
+            for i, c in enumerate(same_line_chars, n[1] - 1):
+                append_number_to_index = False
+                if c in special_character_from_input:
+                    for items in dict_index_list:
+                        # If we find the index already in the list then add the number to that index
+                        if items["index"] == str(n[0]) + "/" + str(i):
+                            items["number"].append(n[3])
+                            append_number_to_index = True
+                    # If we dont find the index already in the list then add the index with the number
+                    if not append_number_to_index:
+                        my_index = str(n[0]) + "/" + str(i)
+                        dict_index_list.append({"index": my_index, "number": [n[3]]})
+
         # If number is not starting/ending in first/last positions
         if n[1] is not 0 and n[2] is not len(lines[n[0]]) - 1:
             print("I am in the middle of the middle")
-            uppper_line_chars = lines[n[0] - 1][n[1] - 1 : n[2] + 2]
-            same_line_chars = lines[n[0]][n[1] - 1] + lines[n[0]][n[2] + 1]
-            all_lines_together = uppper_line_chars + same_line_chars
-            print(all_lines_together)
-            for c in all_lines_together:
+            upper_line_chars = lines[n[0] - 1][n[1] - 1 : n[2] + 2]
+            for i, c in enumerate(upper_line_chars, n[1] - 1):
+                append_number_to_index = False
                 if c in special_character_from_input:
-                    print("special char on middle rows first index")
-                    special_char_number_list.append(n[3])
-                    break
+                    for items in dict_index_list:
+                        # If we find the index already in the list then add the number to that index
+                        if items["index"] == str(n[0] - 1) + "/" + str(i):
+                            items["number"].append(n[3])
+                            append_number_to_index = True
+                    # If we dont find the index already in the list then add the index with the number
+                    if not append_number_to_index:
+                        my_index = str(n[0] - 1) + "/" + str(i)
+                        dict_index_list.append({"index": my_index, "number": [n[3]]})
+            same_line_chars = lines[n[0]][n[1] - 1] + lines[n[0]][n[2] + 1]
+            for i, c in enumerate(same_line_chars):
+                # If its a special character and its the first iteration then it has to be to the left
+                if c in special_character_from_input and i == 0:
+                    append_number_to_index = False
+                    # Check for index already in list
+                    for items in dict_index_list:
+                        # If we find the index already in the list then add the number to that index
+                        if items["index"] == str(n[0]) + "/" + str(n[1] - 1):
+                            items["number"].append(n[3])
+                            append_number_to_index = True
+                    # If we dont find the index already in the list then add the index with the number
+                    if not append_number_to_index:
+                        my_index = str(n[0]) + "/" + str(n[1] - 1)
+                        dict_index_list.append({"index": my_index, "number": [n[3]]})
+                # If its a special character and its the second iteration then it has to be to the left
+                if c in special_character_from_input and i == 1:
+                    append_number_to_index = False
+                    # Check for index already in list
+                    for items in dict_index_list:
+                        # If we find the index already in the list then add the number to that index
+                        if items["index"] == str(n[0]) + "/" + str(n[2] + 1):
+                            items["number"].append(n[3])
+                            append_number_to_index = True
+                    # If we dont find the index already in the list then add the index with the number
+                    if not append_number_to_index:
+                        my_index = str(n[0]) + "/" + str(n[2] + 1)
+                        dict_index_list.append({"index": my_index, "number": [n[3]]})
+
+
 for l in lines:
     print(l)
-print(special_char_number_list)
-int_special_char_number_list = [int(i) for i in special_char_number_list]
-print(int_special_char_number_list)
-print(sum(int_special_char_number_list))
-
 
 print("dict index list ", dict_index_list)
-print(temp_dict_list)
+
+# Find entries with 2 or more numbers in them so we can times
+# them together and add them
+results_list = []
+for items in dict_index_list:
+    # print(items["number"])
+    if len(items["number"]) >= 2:
+        int_result = 0
+        temp_list_result = []
+        for numbers in items["number"]:
+            temp_list_result.append(int(numbers))
+        results_list.append(math.prod(temp_list_result))
+result = sum(results_list)
+print(result)
+
 """ NOTES:
 - Special character is now only *
 - When searching for special char dont break the loop, has to check the whole way aorund.
