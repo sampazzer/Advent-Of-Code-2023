@@ -1,13 +1,13 @@
-input = "input4_1"
+input = "check_input"
 
 list_with_number_sets = []
-final_number_list = []
 
 # open the input file and read it line by line.
 with open(input, "r") as f:
     lines = f.read().splitlines()
 
-print(lines)
+# Create list for keeping track of the card duplicates. Done using List Comprehension. Creates a list as long as the length of the input lines and fills it with zeros.
+card_duplicates = [1 for x in range(len(lines))]
 
 for i in lines:
     # FIRST SET OF NUMBERS
@@ -37,14 +37,32 @@ for i in lines:
     for nums in list_first_nums:
         if nums in list_second_nums:
             match_count += 1
-    if match_count > 0:
-        list_with_number_sets.append(match_count)
 
-# Looping through the matches and performing the maths using bitwise operators (putting a 1 and shifting it how ever many times theres a match -1)
-for nums in list_with_number_sets:
-    result = 1 << nums - 1
-    final_number_list.append(result)
+    list_with_number_sets.append(match_count)
+    print(list_with_number_sets)
 
-print(sum(final_number_list))
+"""
+list_with_number_sets:
+     1  2  3  4  5  6
+    [4, 2, 2, 1, 0, 0]
+card_duplicates:
+    [1, 1, 1, 1, 1, 1]
+    [1, 2, 4, 4, 2, 1]
 
-# Correct result: 21558
+final result should be:
+    [1, 2, 4, 8, 14, 1]
+"""
+
+print(list_with_number_sets)
+# Need to find which card has got the matching numbers so that I can understand which extra ones are going to be created. can do this from an enumeration+1
+
+# The for loop will take the current index i1 from list_with_number_sets A.
+# Nested for loop to take index i1
+# It adds one to the current index i2 in card_duplicates B.
+
+# Gets amount of matching numbers
+print(card_duplicates)
+
+for index, numbers in enumerate(list_with_number_sets):
+    for locations in range(numbers):
+        card_duplicates[index + 1]
