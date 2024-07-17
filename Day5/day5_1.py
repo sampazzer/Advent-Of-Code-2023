@@ -26,7 +26,7 @@ water_to_light_maps = lines[18:20]
 # Light to temperature maps:
 light_to_temperature_maps = lines[22:25]
 
-# Temperture to humidity maps:
+# Temperature to humidity maps:
 temperature_to_humidity_maps = lines[27:29]
 
 # Humidity to location maps:
@@ -40,3 +40,30 @@ humidity_to_location_maps = lines[31:33]
 # print(light_to_temperature_maps)
 # print(temperature_to_humidity_maps)
 # print(humidity_to_location_maps)
+
+# Seed to soil result list
+seed_to_soil_R = []
+
+# Take all the seeds and test them against the soil map. If its in the offset portion then add it to the list
+# if it isn't then add the seed number to the result list as it is unchanged.
+for seed in seed_list:
+    is_it_offset = False
+    for maps in seed_to_soil_maps:
+        print(maps.split())
+        splitnums = maps.split()
+        if int(seed) > int(splitnums[1]) and int(seed) < (
+            int(splitnums[1]) + int(splitnums[2])
+        ):
+            absdifference = abs(int(splitnums[0]) - int(splitnums[1]))
+            result = int(seed) + absdifference
+            is_it_offset = True
+            seed_to_soil_R.append(result)
+    if not is_it_offset:
+        seed_to_soil_R.append(seed)
+
+print(seed_to_soil_R)
+
+
+# take the seed number find out if its between the source number + range.
+# if it is then take the source number away from the seed number to find the depth lets call it.
+# then take the destination number plus the depth, that will be your next number
