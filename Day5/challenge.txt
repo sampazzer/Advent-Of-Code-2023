@@ -45,3 +45,18 @@ light 34
 temperature 34
 humidity 35
 location 35.
+
+
+
+
+
+you can only really append the untouched numbers after they have been checked against the maps to prove they arent in one.
+
+check the range. if none of it is hit then dont append for now.
+if part of it is hit then append the translated range and adjust the range being looked at e.g.:
+range 20 to 30 being compared against 25 to 35 with -5 offset
+
+25 to 30 is offset = 20 to 25 new range but the old range should now be 20 to 24
+
+say 20 to 24 is now compared against 19 to 24 with -10 offset
+20 to 24 is offset = 10 to 14 IF IT ALL FITS IN THEN YOU CAN SKIP THE REST
